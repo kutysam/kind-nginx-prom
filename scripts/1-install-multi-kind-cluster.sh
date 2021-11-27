@@ -1,6 +1,6 @@
 #!/bin/bash
 
 ### Run a multi-node kind cluster
-echo "\n--- Creating Kind Cluster ---\n"
+echo "--- Creating KinD Cluster ---"
 kind create cluster --config config/multi-node-kind.yaml
-echo "\n--- Kind Cluster Created ---\n"
+echo "--- KinD Cluster Created ---"

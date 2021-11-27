@@ -7,4 +7,4 @@ curl localhost/bar
 curl localhost/foo
 
 ### Check if ingress is normal
-# Not too sure on what is expected.
+# Not too sure on what is expected, see README.md
