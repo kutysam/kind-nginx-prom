@@ -1,16 +1,19 @@
 # Introduction
 
+This project simply creates a kind cluster, ingress-nginx, prometheus, 2 test k8s apps with ingresses, health-checks, load testing and eventually exportation of nginx metrics to csv format.
 
 ## Pre-requisites
 
 Do note that all commands specified must be ran at the root of this directory.
 
-1. OS should be linux Ubuntu Version 18
-   1. If you want to use other distros, you have to install docker / kubectl in your own way)
-
+1. OS must be UBUNTU. Ideal Version is 18.
+   1. If you want to use other distros
+      1. You have to install docker / kubectl in your own way)
+      1. Modification of certain scripts is a must due to the apt repo.
 1. Architecture must be amd64.
+1. Ideal approach would be for the prerequisites to be packaged into a image like AMI image.
 
-### The following commands require sudo access as we will be moving the files to `/usr/local/bin` directory
+### [PRE-REQ] The following commands require sudo access as we will be moving the files to `/usr/local/bin` directory
 
 1. [Docker](https://docs.docker.com/engine/install/ubuntu/)
    1. Required to create KinD clusters.
@@ -43,19 +46,13 @@ Do note that all commands specified must be ran at the root of this directory.
 
 If there are version issues, feel free to modify the script to suit the tested version.
 
-## What does this do?
-
-1. Create a multi node kind cluster, control-plane and worker-node.
-
-1. Installs [kubernetes nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) onto your cluster via helm.
-
 ## Steps to run automated script
 
 Do note that all commands specified must be ran at the root of this directory.
 
 1. Execute the script `./automated-run-all.sh`
 
-1. It will execute the scripts from 1 - 6 in order.
+1. It will execute the scripts from 1 - 7 in order.
    1. `1-install-multi-kind-cluster.sh`
       1. Installs a multi node KinD cluster on your machine. Uses the configfile located at `config/multi-node-kind.yaml`
 
@@ -82,17 +79,18 @@ Do note that all commands specified must be ran at the root of this directory.
 
 ## Important information
 
-You should only run automated-run-all.sh at root directory. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
+1. You should only run `./automated-run-all.sh` at root directory.
+1. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
 
-Additionally, if your CSV file has -1 entries, it means the result is not readily available from prometheus
+Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period
 
 ## Other information
 
-For 5-health-check.sh, I am unsure on what does it mean by checking via kubernetes api? Ingress itself does not have a health check.
+For `5-health-check.sh`, I am unsure on what does it mean by checking via kubernetes api? Ingress itself does not have a health check.
 We can technically parse the events api to see if there are errors but I'm unsure on what is exactly expected.
 Since we can do a curl to the ingress, that should be suffient.
 
-For prometheus, we can either let it automatically scrape (which is what i did), or we can configure the configmap to let define the endpoint manually.
+For prometheus, we can either let it automatically scrape (which is what i did), or we can configure the configmap to let define the endpoint manually which is not ideal.
 
 ## Future work
 
