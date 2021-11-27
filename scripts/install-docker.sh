@@ -20,4 +20,4 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 ### To allow our current user to access docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
-newgrp docker
+sg docker 'echo resetting groups for user session'
