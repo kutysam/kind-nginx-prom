@@ -53,7 +53,7 @@ If there are version issues, feel free to modify the script to suit the tested v
 
 Do note that all commands specified must be ran at the root of this directory.
 
-1. Execute the script automated-run-all.sh
+1. Execute the script `./automated-run-all.sh`
 
 1. It will execute the scripts from 1 - 6 in order.
    1. `1-install-multi-kind-cluster.sh`
