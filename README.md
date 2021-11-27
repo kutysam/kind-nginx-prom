@@ -92,6 +92,8 @@ Since we can do a curl to the ingress, that should be suffient.
 
 For prometheus, we can either let it automatically scrape (which is what i did), or we can configure the configmap to let define the endpoint manually which is not ideal.
 
+The script will have some sleep commands as this is an automated script. The main reason is, prometheus needs some time to scrape the data and we are spinning up everything and expecting results too fast. There is a 100 second sleep after load testing to ensure that there will be data in prometheus database.
+
 ## Future work
 
 1. Set specific versions for the pre-requisites.
