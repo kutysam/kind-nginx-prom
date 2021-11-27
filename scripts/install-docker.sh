@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "--- Installing docker ---"
 ### Remove all previous instances of docker
 sudo apt-get -y remove docker docker-engine docker.io containerd runc
 
