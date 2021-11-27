@@ -46,6 +46,54 @@ Do note that all commands specified must be ran at the root of this directory.
 
 If there are version issues, feel free to modify the script to suit the tested version.
 
+## Steps to run automated script
+
+Do note that all commands specified must be ran at the root of this directory.
+
+1. Execute the script `./automated-run-all.sh`
+
+1. It will execute the scripts from 1 - 7 in order.
+   1. `1-install-multi-kind-cluster.sh`
+      1. Installs a multi node KinD cluster on your machine. Uses the configfile located at `config/multi-node-kind.yaml`
+
+   1. `2-install-ingress-nginx.sh`
+      1. Installs the nginx ingress controller (modified for KinD)
+
+   1. `3-install-foo-bar.sh`
+      1. Installs foo bar ingress, service, pod via kubectl
+
+   1. `4-install-prometheus.sh`
+      1. Installs prometheus via helm
+
+   1. `5-health-check.sh`
+      1. Checks if the endpoints are alive.
+
+   1. `6-load-test.sh`
+      1. Runs k6 load test on the ingress (Takes 240seconds)
+
+   1. `7-metrics.sh` and `7-metrics.py`
+      1. kube port forwards the prometheus endpoint for pql query
+      1. Runs metric collection and output to CSV file (For the last 10 minutes)
+
+1. Retrieve your csv file at `results/results.csv`
+
+## Important information
+
+1. You should only run `./automated-run-all.sh` at root directory.
+1. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
+
+Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period
+
+## Other information
+
+For `5-health-check.sh`, I am unsure on what does it mean by checking via kubernetes api? Ingress itself does not have a health check.
+We can technically parse the events api to see if there are errors but I'm unsure on what is exactly expected.
+Since we can do a curl to the ingress, that should be suffient.
+
+For prometheus, we can either let it automatically scrape (which is what i did), or we can configure the configmap to let define the endpoint manually which is not ideal.
+
+The script will have some sleep commands as this is an automated script. The main reason is, prometheus needs some time to scrape the data and we are spinning up everything and expecting results too fast. There is a 100 second sleep after load testing to ensure that there will be data in prometheus database.
+
 ## Future work
 
 1. Set specific versions for the pre-requisites.
