@@ -64,16 +64,19 @@ Do note that all commands specified must be ran at the root of this directory.
    1. `2-install-ingress-nginx.sh`
       1. Installs the nginx ingress controller (modified for KinD)
 
-   1. `3-install-prometheus.sh`
+   1. `3-install-foo-bar.sh`
+      1. Installs foo bar ingress, service, pod via kubectl
+
+   1. `4-install-prometheus.sh`
       1. Installs prometheus via helm
 
-   1. `4-health-check.sh`
+   1. `5-health-check.sh`
       1. Checks if the endpoints are alive.
 
-   1. `5-load-test.sh`
+   1. `6-load-test.sh`
       1. Runs k6 load test on the ingress (Takes 240seconds)
 
-   1. `6-metrics.sh` and `6-metrics.py`
+   1. `7-metrics.sh` and `7-metrics.py`
       1. kube port forwards the prometheus endpoint for pql query
       1. Runs metric collection and output to CSV file (For the last 10 minutes)
 

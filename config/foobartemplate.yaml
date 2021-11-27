@@ -7,9 +7,9 @@ metadata:
 spec:
   containers:
     - name: http-echo
-      image: jxlwqq/http-echo:latest
+      image: hashicorp/http-echo:latest
       ports:
-        - containerPort: 8080
+        - containerPort: 5678
       args:
         - "--text=foo"
 ---
@@ -22,7 +22,7 @@ spec:
     app: foo
   ports:
     # Default port used by the image
-    - port: 8080
+    - port: 5678
 ---
 kind: Pod
 apiVersion: v1
@@ -33,9 +33,9 @@ metadata:
 spec:
   containers:
     - name: http-echo
-      image: jxlwqq/http-echo:latest
+      image: hashicorp/http-echo:latest
       ports:
-        - containerPort: 8080
+        - containerPort: 5678
       args:
         - "--text=bar"
 ---
@@ -48,7 +48,7 @@ spec:
     app: bar
   ports:
     # Default port used by the image
-    - port: 8080
+    - port: 5678
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -64,12 +64,12 @@ spec:
               service:
                 name: foo-service
                 port:
-                  number: 8080
+                  number: 5678
           - pathType: Prefix
             path: "/bar"
             backend:
               service:
                 name: bar-service
                 port:
-                  number: 8080
+                  number: 5678
 ---
