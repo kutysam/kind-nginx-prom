@@ -79,7 +79,7 @@ Do note that all commands specified must be ran at the root of this directory.
       1. Runs metric collection and output to CSV file (For the last 10 minutes)
 
 1. Retrieve your csv file at `results/results.csv`
-   1. Format of the csv is as follows `starttime,endtime,avg_memory,avg_cpu,avg_req`. Interval is set to 1 second as per requirements.
+   1. Format of the csv is as follows `starttime,endtime,avg_req,avg_memory,avg_cpu`. Interval is set to 1 second as per requirements.
 
 Both pre-req and automated run has been tested on a GCP E2 machine with ubuntu 18.04 image and all works well!
 

@@ -43,10 +43,10 @@ for row in results:
 with open('results/results.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     _ = writer.writerow(
-        ["starttime", "endtime", "avg_memory", "avg_cpu", "avg_req"])
+        ["starttime", "endtime", "avg_req", "avg_memory", "avg_cpu"])
     for item in items:
         metrics = items[item]
         _ = writer.writerow([item, item+INTERVAL,
-                             metrics[0], metrics[1], metrics[2]])
+                             metrics[2], metrics[0], metrics[1]])
 
-print('File is ready at results/results.csv')
+print('CSV Results are ready at results/results.csv')
