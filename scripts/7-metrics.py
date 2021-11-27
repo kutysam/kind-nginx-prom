@@ -16,7 +16,7 @@ startTime = currTime - DURATION
 
 
 def getEndpoint(metric):
-    return f"http://localhost:8082/api/v1/query_range?query={metric}&start={startTime}&end={currTime}&step={INTERVAL}"
+    return f"http://localhost:8081/api/v1/query_range?query={metric}&start={startTime}&end={currTime}&step={INTERVAL}"
 
 
 response = requests.get(getEndpoint(memory_metric))
