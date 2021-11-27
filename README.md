@@ -1,17 +1,17 @@
 # Introduction
 
-This project simply creates a kind cluster, ingress-nginx, prometheus, 2 test k8s apps with ingresses, health-checks, load testing and eventually exportation of nginx metrics to csv format.
+This project simply creates a kind cluster(with 1 control and 1 worker), ingress-nginx, prometheus, 2 test k8s apps with ingresses, health-checks, load testing and eventually exportation of nginx metrics to csv format.
 
 ## Pre-requisites
 
 Do note that all commands specified must be ran at the root of this directory.
 
 1. OS must be UBUNTU. Ideal Version is 18.
-   1. If you want to use other distros
-      1. You have to install docker / kubectl in your own way)
+   1. If you want to use other distros:
+      1. You have to install the pre-req items in your own way
       1. Modification of pre-req scripts is a must due to the apt repo key addition.
 1. Architecture must be amd64.
-1. Ideal approach would be for the prerequisites to be packaged into a image like AMI image.
+1. Ideal approach would be for the prerequisites to be packaged into a image like AMI image so that we don't have to install it always.
 
 ### [PRE-REQ] The following commands require sudo access as we will be moving the files to `/usr/local/bin` directory
 
@@ -46,6 +46,9 @@ Do note that all commands specified must be ran at the root of this directory.
 
 If there are version issues, feel free to modify the script to suit the tested version.
 
+If you would like to run an all-in-one-script, execute `./pre-reg-run-all.sh`.
+Once again, this is only tested on ubuntu 18.04 for now.
+
 ## Steps to run automated script
 
 Do note that all commands specified must be ran at the root of this directory.
@@ -69,23 +72,26 @@ Do note that all commands specified must be ran at the root of this directory.
       1. Checks if the endpoints are alive.
 
    1. `6-load-test.sh`
-      1. Runs k6 load test on the ingress (Takes 240seconds)
+      1. Runs k6 load test on the ingress (Takes 240seconds, 120seconds per service)
 
    1. `7-metrics.sh` and `7-metrics.py`
-      1. kube port forwards the prometheus endpoint for pql query
+      1. kube port forwards the prometheus endpoint for PQL query
       1. Runs metric collection and output to CSV file (For the last 10 minutes)
 
 1. Retrieve your csv file at `results/results.csv`
+   1. Format of the csv is as follows `starttime,endtime,avg_memory,avg_cpu,avg_req`. Interval is set to 1 second as per requirements.
+
+Both pre-req and automated run has been tested on a GCP E2 machine with ubuntu 18.04 image and all works well!
 
 ## Important information
 
-1. You should only run `./automated-run-all.sh` at root directory.
+1. You should only run `./automated-run-all.sh` at **root directory**.
 
 1. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
 
-1. Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period
+1. Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period.
 
-1. If you do get a permission on docker access when you run automated script, please exit the terminal and re-enter. This is because the group hasn't refreshed. `newgrp docker` is another option.
+1. If you do get a permission issue on docker access when you run automated script, please exit the terminal and re-enter. This is because the group hasn't refreshed. `newgrp docker` is another option.
 
 ## Other information
 
