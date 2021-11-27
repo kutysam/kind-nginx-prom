@@ -1,3 +1,3 @@
 #!/bin/bash
 
-kubectl apply -f ../config/foobartemplate.yaml
+kubectl apply -f config/foobartemplate.yaml
