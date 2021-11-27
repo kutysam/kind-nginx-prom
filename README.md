@@ -80,9 +80,12 @@ Do note that all commands specified must be ran at the root of this directory.
 ## Important information
 
 1. You should only run `./automated-run-all.sh` at root directory.
+
 1. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
 
-Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period
+1. Additionally, if your CSV file has `-1` entries, it means the result is not readily available from prometheus for that given period
+
+1. If you do get a permission on docker access when you run automated script, please exit the terminal and re-enter. This is because the group hasn't refreshed. `newgrp docker` is another option.
 
 ## Other information
 
