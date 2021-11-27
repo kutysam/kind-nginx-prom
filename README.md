@@ -1,13 +1,11 @@
 # Introduction
 
-Create mult...
 
 ## Pre-requisites
 
 Do note that all commands specified must be ran at the root of this directory.
 
 1. OS should be linux Ubuntu Version 18
-
    1. If you want to use other distros, you have to install docker / kubectl in your own way)
 
 1. Architecture must be amd64.
@@ -82,7 +80,16 @@ Do note that all commands specified must be ran at the root of this directory.
 
 1. Retrieve your csv file at `results/results.csv`
 
+## Important information
+
+You should only run automated-run-all.sh at root directory. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
+
 ## Other information
 
-For 4-health-check, I am unsure on what does it mean by checking via kubernetes api?
-Ingress itself does not have a health check. We can technically parse the events api to see if there are errors but I'm unsure on what is exactly expected. Since we can do a curl to the ingress, that should be suffient.
+For 5-health-check.sh, I am unsure on what does it mean by checking via kubernetes api? Ingress itself does not have a health check.
+We can technically parse the events api to see if there are errors but I'm unsure on what is exactly expected.
+Since we can do a curl to the ingress, that should be suffient.
+
+## Future work
+
+1. Set specific versions for the pre-requisites.

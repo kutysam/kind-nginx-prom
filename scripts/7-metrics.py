@@ -37,7 +37,7 @@ results = response.json()['data']['result'][0]['values']
 for idx, val in enumerate(results):
     items[idx].append(val[1])
 
-with open('../results/results.csv', 'w', newline='') as file:
+with open('results/results.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     _ = writer.writerow(
         ["starttime", "endtime", "avg_memory", "avg_cpu", "avg_req"])
