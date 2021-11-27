@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "--- 5. HealthCheck for FOO BAR App ---"
+
 ### Checking if bar is working
 curl localhost/bar
 

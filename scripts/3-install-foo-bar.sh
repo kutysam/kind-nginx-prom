@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "--- 3. Installing FOO BAR App ---"
+
 kubectl apply -f config/foobartemplate.yaml
 
 kubectl wait --namespace default \

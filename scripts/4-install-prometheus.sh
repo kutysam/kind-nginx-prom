@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo "--- 4. Installing Prometheus ---"
+
 kubectl create namespace monitoring
 
 ### Install prometheus

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Install nginx ingress (for kind clusters)
-echo "--- Installing ingress-nginx ---"
+echo "--- 2. Installing ingress-nginx ---"
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 echo "--- ingress-nginx Installed ---"
 
