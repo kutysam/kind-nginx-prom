@@ -90,6 +90,8 @@ For 5-health-check.sh, I am unsure on what does it mean by checking via kubernet
 We can technically parse the events api to see if there are errors but I'm unsure on what is exactly expected.
 Since we can do a curl to the ingress, that should be suffient.
 
+For prometheus, we can either let it automatically scrape (which is what i did), or we can configure the configmap to let define the endpoint manually.
+
 ## Future work
 
 1. Set specific versions for the pre-requisites.
