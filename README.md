@@ -84,6 +84,8 @@ Do note that all commands specified must be ran at the root of this directory.
 
 You should only run automated-run-all.sh at root directory. The paths are relative and works only with running at root path right now. If you run the individual scripts in scripts folder, be sure to run it from the root, such as, `bash scripts/6-load-test.sh`.
 
+Additionally, if your CSV file has -1 entries, it means the result is not readily available from prometheus
+
 ## Other information
 
 For 5-health-check.sh, I am unsure on what does it mean by checking via kubernetes api? Ingress itself does not have a health check.
