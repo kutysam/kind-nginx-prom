@@ -9,7 +9,7 @@ Do note that all commands specified must be ran at the root of this directory.
 1. OS must be UBUNTU. Ideal Version is 18.
    1. If you want to use other distros
       1. You have to install docker / kubectl in your own way)
-      1. Modification of certain scripts is a must due to the apt repo.
+      1. Modification of pre-req scripts is a must due to the apt repo key addition.
 1. Architecture must be amd64.
 1. Ideal approach would be for the prerequisites to be packaged into a image like AMI image.
 

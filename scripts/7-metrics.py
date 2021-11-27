@@ -48,3 +48,5 @@ with open('results/results.csv', 'w', newline='') as file:
         metrics = items[item]
         _ = writer.writerow([item, item+INTERVAL,
                              metrics[0], metrics[1], metrics[2]])
+
+print('File is ready at results/results.csv')
