@@ -45,6 +45,5 @@ with open('results/results.csv', 'w', newline='') as file:
     _ = writer.writerow(
         ["starttime", "endtime", "avg_memory", "avg_cpu", "avg_req"])
     for item in items:
-        print(len(item))
         _ = writer.writerow([item[0], item[0]+INTERVAL,
                              item[1], item[2], item[3]])
