@@ -12,6 +12,7 @@ Do note that all commands specified must be ran at the root of this directory.
       1. Modification of pre-req scripts is a must due to the apt repo key addition.
 1. Architecture must be amd64.
 1. Ideal approach would be for the prerequisites to be packaged into a image like AMI image so that we don't have to install it always.
+1. Your user should be already added to docker group. See automated script first few lines. We can have a discussion about why if needed.
 
 ### [PRE-REQ] The following commands require sudo access as we will be moving the files to `/usr/local/bin` directory
 
